@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI, OpenAI
 import streamlit as st
+from streamlit.components.v1 import html
 
 st.title("Quokka 😎")
 
@@ -17,7 +18,24 @@ model_name = st.sidebar.selectbox('Select Model', ['gpt-4o-mini', 'gpt-3.5-turbo
 #     $2.50 / 1M input tokens
 #     $1.25 / 1M input tokens
 ###
+button = """
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="chan7brew" data-color="#40DCA5" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+"""
 
+html(button, height=70, width=220)
+
+st.markdown(
+    """
+    <style>
+        iframe[width="220"] {
+            position: fixed;
+            bottom: 60px;
+            right: 40px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 if api_key and model_name:
     try:
